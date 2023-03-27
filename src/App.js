@@ -1,24 +1,22 @@
-import logo from './logo.svg';
 import './App.css';
 
+export function RequireAuth({ children }) {
+    // Used to ensure the refreshToken is called once at a time
+    const user = ???; // TODO Get user from local storage
+
+    if (user === null) {
+        //TODO Navigate to login
+    } else {
+        return children;
+    }
+}
+
 function App() {
+
+//Navigation dans requireAuth
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      //TODO ROUTER
+      <div></div>
   );
 }
 
