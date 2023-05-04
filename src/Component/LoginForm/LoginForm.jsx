@@ -8,8 +8,8 @@ import './LoginForm.css';
 const LoginForm = ({handleSubmit}) => {
 
     const [credentials, setCredentials] = useState({
-        login: '',
-        password: ''
+        username: '',
+        password: '',
     });
 
     const handleChange = ({key, value}) => {
@@ -20,7 +20,7 @@ const LoginForm = ({handleSubmit}) => {
 
     const handleLoginChange = (event) => {
         handleChange({
-            key: 'login',
+            key: 'username',
             value: event.currentTarget.value
         });
     };
@@ -40,16 +40,25 @@ const LoginForm = ({handleSubmit}) => {
     return (
         <>
 
-            <form id="login-form" onSubmit={handleSubmitForm}>
+            <form id="login-form" className="login-wrapper" onSubmit={handleSubmitForm}>
+
+                <h1>Please Log In</h1>
 
                 <div className='credentials-and-password-container'>
 
-                    <button
-                        className='login-page-call-to-action'
-                        type="submit"
-                    >
-                        Submit
-                    </button>
+                <label>
+                    <p>Username</p>
+                    <input type="text" onChange={e => handleLoginChange(e)}/>
+                </label>
+
+                <label>
+                    <p>Password</p>
+                    <input type="password" onChange={e => handlePasswordChange(e)}/>
+                </label>
+
+                <div>
+                    <button type="submit">Submit</button>
+                </div>
 
                 </div>
             </form>
