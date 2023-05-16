@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-route
 import Layout from './Page/Layout/Layout';
 import Home from "./Page/Home/Home";
 import Login from "./Page/Login/LoginPage";
-import { useState } from 'react';
+import Logout from "./Page/Logout/LogoutPage";
 
 export function RequireAuth({ children }) {
     // Used to ensure the refreshToken is called once at a time
@@ -16,11 +16,8 @@ export function RequireAuth({ children }) {
     const token = localStorage.getItem('token');
     const location = useLocation();
 
-    console.log(token);
-    console.log(location.pathname.includes('/login'));
-
     if (token === null) {
-        console.log(location.pathname);
+        // console.log(location.pathname);
 
         if (location.pathname.includes('/login')) {
             console.log('Utilisateur non connecté');
@@ -47,6 +44,7 @@ function App() {
                     <Route index element={<Home />} />
                 </Route>
                 <Route path="/login" element={<Login />} />
+                <Route path="/logout" element={<Logout/>} />
                 {/* <Route path='/*' element={<Navigate to='/' />} /> */}
             </Routes>
         </BrowserRouter>
