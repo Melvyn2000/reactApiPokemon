@@ -1,10 +1,10 @@
 import './App.css';
 
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import Layout from './Page/Layout/Layout';
 import Home from "./Page/Home/Home";
 import Login from "./Page/Login/LoginPage";
-import useToken from "./Component/Services/useToken";
+import { useState } from 'react';
 
 export function RequireAuth({ children }) {
     // Used to ensure the refreshToken is called once at a time
@@ -13,17 +13,24 @@ export function RequireAuth({ children }) {
     // const user = localStorage.getItem('token');
     // console.log(user);
 
-    const { token } = useToken();
+    const token = localStorage.getItem('token');
+    const location = useLocation();
+
     console.log(token);
+    console.log(location.pathname.includes('/login'));
 
     if (token === null) {
-        //TODO Navigate to login
-        console.log('/login');
-        return(
-            <Navigate replace to="/login" />
-        );
+        console.log(location.pathname);
+
+        if (location.pathname.includes('/login')) {
+            console.log('Utilisateur non connecté');
+            return children;
+        } else {
+            return( <Navigate to="/login" /> );
+        }
+
     } else {
-        console.log('children');
+        console.log('Utilisateur connecté');
         return children;
     }
 }
