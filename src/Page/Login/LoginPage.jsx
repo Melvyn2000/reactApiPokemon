@@ -26,9 +26,9 @@ const LoginPage = () => {
                 }
               })
               .then(function (response) {
-                  console.log('Connexion réussie !');
-                  setToken(response.data.token);
-                  navigate("/");
+                console.log('Connexion réussie !');
+                setToken(response.data.token);
+                navigate("/");
               })
               .catch(function (error) {
                 console.log('Connexion échouée !');
